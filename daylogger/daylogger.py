@@ -2,6 +2,7 @@
 '''Updates daylogger.txt file based on day and logger times.'''
 
 import datetime
+import time
 
 with open("daylogger.txt",'r') as dl:
     first_line = dl.readline()
@@ -34,10 +35,22 @@ else:
     with open("daylogger.txt",'r') as dl:
         lines = dl.readlines()
         num_lines = len(lines)
-        if num_lines < 4:
+        if num_lines < 5:
             first_entry = True
         
         if not first_entry:
-            prev_goal = lines[-1]
-            print("Your previous goal was:", prev_goal)
+            prev_goal = lines[-2][33:]
+            print("\nYour previous goal was:", prev_goal)
+
+    achieve = input("Accomplished: ")
+    learn = input("Learned: ")
+    goal = input("Goal: ")
+
+    t = time.localtime()
+    current_time = time.strftime("%H:%M:%S", t)
+    with open("daylogger.txt","a") as dl:
+        dl.write("\n\n"+current_time+"-")
+        dl.write("\n\tI "+achieve+".")
+        dl.write("\n\tI learned "+learn+".")
+        dl.write("\n\tMy goal for the next hour is to "+goal+".\n\n")
 
