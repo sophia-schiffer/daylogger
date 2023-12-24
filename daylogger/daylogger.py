@@ -15,8 +15,27 @@ date = datetime.date.today()
 new_day = False
 if date.year > int(doc_date[2]):
     new_day = True
+    print("\nHappy "+str(date.year)+"!\n\n")
+    
 elif date.month > int(doc_date[0]):
     new_day = True
+    month_names = {
+    1: "January",
+    2: "February",
+    3: "March",
+    4: "April",
+    5: "May",
+    6: "June",
+    7: "July",
+    8: "August",
+    9: "September",
+    10: "October",
+    11: "November",
+    12: "December"
+    }
+    month = month_names[date.month]
+    print("\nHappy "+month+"!\n\n")
+
 elif date.day > int(doc_date[1]):
     new_day = True
 else:
