@@ -63,7 +63,7 @@ elif month == "December":
         celebrate = True
         age = str(date.year - 2001)
         holiday = age+"nd Birthday"
-    elif date.day == 25:
+    elif date.day == 25 and new_day:
         print("\nMerry Christmas!\n\n")
 
 # Annual holidays
@@ -90,7 +90,7 @@ if new_day:
         string = "Today my reason is: "
         dl.write(string.rstrip("\n"))
         reason = input("What is your reason today, Sophia?: ")
-        dl.write(reason+"\n\n")
+        dl.write(reason+"\n")
 
 else:
     first_entry = False
@@ -114,5 +114,5 @@ else:
         dl.write("\n\n"+current_time+"-")
         dl.write("\n\tI "+achieve+".")
         dl.write("\n\tI learned "+learn+".")
-        dl.write("\n\tMy goal for the next hour is to "+goal+".\n\n")
+        dl.write("\n\tMy goal for the next hour is to "+goal+".\n")
 
