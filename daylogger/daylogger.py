@@ -90,7 +90,7 @@ if new_day:
         string = "Today my reason is: "
         dl.write(string.rstrip("\n"))
         reason = input("What is your reason today, Sophia?: ")
-        dl.write(reason+"\n")
+        dl.write(reason+"\n\n")
 
 else:
     first_entry = False
@@ -111,8 +111,8 @@ else:
     t = time.localtime()
     current_time = time.strftime("%H:%M:%S", t)
     with open("daylogger.txt","a") as dl:
-        dl.write("\n\n"+current_time+"-")
+        dl.write("\n"+current_time+"-")
         dl.write("\n\tI "+achieve+".")
         dl.write("\n\tI learned "+learn+".")
-        dl.write("\n\tMy goal for the next hour is to "+goal+".\n")
+        dl.write("\n\tMy goal for the next hour is to "+goal+".\n\n")
 
