@@ -73,8 +73,17 @@ elif month == "December":
 # Countdown
 graduation = [6,9,2024,10,30]
 countdown = graduation
+cd_string = "graduation"
 CT = pytz.timezone('US/Central')
 cd_time = datetime.datetime.now(CT)
+delta = datetime.date(countdown[2],countdown[0],countdown[1])-datetime.date(date.year,date.month,date.day)
+days = delta.days
+hours = countdown[3]-cd_time.hour
+if hours < 0:
+    hours = 24+hours
+    days -= 1
+minutes = countdown[4]-cd_time.minute-1
+seconds = 60 - cd_time.second
 
 # Daytime
 now = time.localtime()
@@ -85,10 +94,14 @@ elif now.tm_hour < 5:
 else:
     day_str = "evening"
 
-if new_day and celebrate:       
-    print("\nHappy "+holiday+"!")
-if not celebrate:
-    print("\nGood "+day_str+", Sophia!")
+if new_day:
+    if celebrate:       
+        print("\nHappy "+holiday+"!")
+    else:
+        print("\nGood "+day_str+", Sophia!")
+    print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
+        " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
+    
 
 birthdays = {
     "Andrea": [4,19],
