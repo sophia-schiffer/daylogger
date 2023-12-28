@@ -3,6 +3,7 @@
 
 import datetime
 import time
+import pytz
 
 with open("daylogger.txt",'r') as dl:
     first_line = dl.readline()
@@ -68,9 +69,26 @@ elif month == "December":
 
 # Annual holidays
 #TODO: Easter, Thanksgiving
+        
+# Countdown
+graduation = [6,9,2024,10,30]
+countdown = graduation
+CT = pytz.timezone('US/Central')
+cd_time = datetime.datetime.now(CT)
+
+# Daytime
+now = time.localtime()
+if now.tm_hour < 12:
+    day_str = "morning"
+elif now.tm_hour < 5:
+    day_str = "afternoon"
+else:
+    day_str = "evening"
 
 if new_day and celebrate:       
-    print("\nHappy "+holiday+"!\n\n")
+    print("\nHappy "+holiday+"!")
+if not celebrate:
+    print("\nGood "+day_str+", Sophia!")
 
 birthdays = {
     "Andrea": [4,19],
@@ -89,7 +107,7 @@ if new_day:
         dl.write(str(date.month)+"-"+str(date.day)+"-"+str(date.year)+"\n\n")
         string = "Today my reason is: "
         dl.write(string.rstrip("\n"))
-        reason = input("What is your reason today, Sophia?: ")
+        reason = input("What is your reason today?: ")
         dl.write(reason+"\n\n")
 
 else:
