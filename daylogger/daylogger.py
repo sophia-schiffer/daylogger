@@ -80,9 +80,11 @@ delta = datetime.date(countdown[2],countdown[0],countdown[1])-datetime.date(date
 days = delta.days
 hours = countdown[3]-cd_time.hour
 if hours < 0:
-    hours = 24+hours
+    hours = 24 + hours
     days -= 1
 minutes = countdown[4]-cd_time.minute-1
+if minutes < 0:
+    minutes = 60 + minutes
 seconds = 60 - cd_time.second
 
 # Daytime
@@ -120,7 +122,7 @@ if new_day:
         dl.write(str(date.month)+"-"+str(date.day)+"-"+str(date.year)+"\n\n")
         string = "Today my reason is: "
         dl.write(string.rstrip("\n"))
-        reason = input("What is your reason today?: ")
+        reason = input("\nWhat is your reason today?: ")
         dl.write(reason+"\n\n")
 
 else:
