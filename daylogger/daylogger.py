@@ -63,7 +63,16 @@ elif month == "December":
     if date.day == 2:
         celebrate = True
         age = str(date.year - 2001)
-        holiday = age+"nd Birthday"
+        num_strings = {
+            1: "st",
+            2: "nd",
+            3: "rd",
+        }
+        if age%10 < 4:
+            num_string = num_strings[age%10]
+        else:
+            num_string = "th"
+        holiday = age+num_string+" Birthday"
     elif date.day == 25 and new_day:
         print("\nMerry Christmas!\n\n")
 
@@ -91,7 +100,7 @@ seconds = 60 - cd_time.second
 now = time.localtime()
 if now.tm_hour < 12:
     day_str = "morning"
-elif now.tm_hour < 5:
+elif now.tm_hour < 17:
     day_str = "afternoon"
 else:
     day_str = "evening"
