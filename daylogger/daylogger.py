@@ -5,6 +5,14 @@ import datetime
 import time
 import pytz
 
+# Open all greeting files
+with open("birthdays.txt",'r') as bd:
+    birthday_lines = bd.readlines()
+    birthdays = []
+    for line in birthday_lines:
+        line.split(":")
+        birthdays.append(line)
+
 with open("daylogger.txt",'r') as dl:
     first_line = dl.readline()
 
@@ -114,17 +122,9 @@ if new_day:
         " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
     
 
-birthdays = {
-    "Andrea": [4,19],
-    "Markus": [4,28],
-    "Mama & Lauren": [12,14],
-    "Sylvia": [5,1],
-    "Papa": [9,7]
-}
-if new_day:
-    for key in birthdays.keys():
-        if birthdays[key][0] == date.month and birthdays[key][1] == date.day:
-            print("\nIt's "+key+"'s birthday today!")
+for bd in birthdays:
+    if int(bd[1]) == date.month and int(bd[2]) == date.day:
+        print("\nIt's "+bd[0]+"'s birthday today!")
 
 if new_day:
     with open("daylogger.txt",'w') as dl:
