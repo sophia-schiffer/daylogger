@@ -29,6 +29,6 @@ pip install pytz
 3. ```
    cd ~/path/to/directory/daylogger
    python3 daylogger.py
-   open daylogger.txt
+   daylogger.txt
    ```
    **if python is not installed, enter `python3` into the terminal**
