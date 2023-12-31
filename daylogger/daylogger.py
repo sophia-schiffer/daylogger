@@ -118,7 +118,7 @@ if new_day:
     if celebrate:       
         print("\nHappy "+holiday+"!")
     else:
-        print("\nGood "+day_str+", Sophia!")
+        print("\nGood "+day_str+", "+bd[0]+"!")
     print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
         " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
     

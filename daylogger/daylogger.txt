@@ -1,10 +1,3 @@
-12-29-2023
+12-30-2023
 
-Today my reason is: create an example daylogger.txt file for my README.md!
-
-
-12:35:04-
-	I updated the README to include setup for Linux and Windows.
-	I learned how to add blocks of code that have a copy button on the right.
-	My goal for the next hour is to make sure I can use the README to setup this script on my new Windows laptop.
-
+Today my reason is: 
