@@ -9,13 +9,11 @@ Script for generating textfile log to track and motivate yourself throughout you
    echo "alias daylogger='python3 ~/path/to/daylogger/daylogger.py;open daylogger.txt'" >> .bash_aliases
    ```
     where `/path/to/daylogger` is the location where the daylogger directory is saved.
-4. ```
-   cd ~/path/to/directory
-   ```
-5. Run
+3. Run
    1. With alias, run command `daylogger`.
    2. Else:
       ```
+      cd ~/path/to/directory
       python3 daylogger.py
       open daylogger.txt
       ```
