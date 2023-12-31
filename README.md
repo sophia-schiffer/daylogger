@@ -21,3 +21,8 @@ Script for generating textfile log to track and motivate yourself throughout you
 ### Windows
 1. Download `daylogger` directory.
 2. Open Windows cmd prompt.
+3. ```
+   cd ~/path/to/directory/daylogger
+   python3 daylogger.py
+   open daylogger.txt
+   ```
