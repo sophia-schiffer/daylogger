@@ -26,3 +26,4 @@ Script for generating textfile log to track and motivate yourself throughout you
    python3 daylogger.py
    open daylogger.txt
    ```
+   **if python is not installed, enter `python3` into the terminal**
