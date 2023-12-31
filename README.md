@@ -1,6 +1,11 @@
 # Daylogger
 Script for generating textfile log to track and motivate yourself throughout your day.
 
+## Dependencies
+```
+pip install pytz
+```
+
 ## Setup
 ### Ubuntu
 1. Download `daylogger` directory.
