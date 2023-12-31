@@ -13,6 +13,13 @@ with open("birthdays.txt",'r') as bd:
         new_line = line.split(':')
         new_line[-1] = new_line[-1].strip("\n")
         birthdays.append(new_line)
+with open("holidays.txt",'r') as hol:
+    hol_lines = hol.readlines()
+    holidays = []
+    for holiday in hol_lines:
+        new_line = holiday.split(":")
+        new_line[-1] = new_line[-1].strip("\n")
+        holidays.append(new_line)
 
 with open("daylogger.txt",'r') as dl:
     first_line = dl.readline()
@@ -51,24 +58,9 @@ elif date.day > int(doc_date[1]):
 else:
     new_day = False
 
-# Permanent Holidays
-celebrate = False
-if month == "February":
-    if date.day == 2:
-        celebrate = True
-        holiday = "Groundhog Day"
-    elif date.day == 14:
-        celebrate = True
-        holiday = "Valentine's Day <3"
-elif month == "March":
-    if date.day == 17:
-        celebrate = True
-        holiday = "St. Patty's Day"
-elif month == "November":
-    if date.day == 11:
-        celebrate = True
-        holiday = "Veteran's Day"
-elif month == "December":
+# Holidays
+
+if month == "December":
     if date.day == 2:
         celebrate = True
         age = str(date.year - 2001)
@@ -82,8 +74,6 @@ elif month == "December":
         else:
             num_string = "th"
         holiday = age+num_string+" Birthday"
-    elif date.day == 25 and new_day:
-        print("\nMerry Christmas!\n\n")
 
 # Annual holidays
 #TODO: Easter, Thanksgiving
@@ -103,6 +93,7 @@ if hours < 0:
 minutes = countdown[4]-cd_time.minute-1
 if minutes < 0:
     minutes = 60 + minutes
+    hours -= 1
 seconds = 60 - cd_time.second
 
 # Daytime
@@ -114,20 +105,24 @@ elif now.tm_hour < 17:
 else:
     day_str = "evening"
 
+
+celebrate = False 
 if new_day:
-    if celebrate:       
-        print("\nHappy "+holiday+"!")
-    else:
-        print("\nGood "+day_str+", Sophia!")
+    for hol in holidays:
+        if int(hol[1]) == date.month and int(hol[2]) == date.day:
+            celebrate = True
+            if len(hol)==4:
+                print("\n"+hol[3]+" "+hol[0]+"!")
+            else:
+                print("\nHappy "+hol[0]+"!")
+    if not celebrate:
+        print("\nGood "+day_str+", "+birthdays[0][0]+"!")
     print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
         " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
-    
-if new_day:
     for bd in birthdays:
         if int(bd[1]) == date.month and int(bd[2]) == date.day:
             print("\nIt's "+bd[0]+"'s birthday today!")
 
-if new_day:
     with open("daylogger.txt",'w') as dl:
         dl.write(str(date.month)+"-"+str(date.day)+"-"+str(date.year)+"\n\n")
         string = "Today my reason is: "
