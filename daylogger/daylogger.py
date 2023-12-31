@@ -10,8 +10,9 @@ with open("birthdays.txt",'r') as bd:
     birthday_lines = bd.readlines()
     birthdays = []
     for line in birthday_lines:
-        line.split(":")
-        birthdays.append(line)
+        new_line = line.split(':')
+        new_line[-1] = new_line[-1].strip("\n")
+        birthdays.append(new_line)
 
 with open("daylogger.txt",'r') as dl:
     first_line = dl.readline()
@@ -121,10 +122,10 @@ if new_day:
     print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
         " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
     
-
-for bd in birthdays:
-    if int(bd[1]) == date.month and int(bd[2]) == date.day:
-        print("\nIt's "+bd[0]+"'s birthday today!")
+if new_day:
+    for bd in birthdays:
+        if int(bd[1]) == date.month and int(bd[2]) == date.day:
+            print("\nIt's "+bd[0]+"'s birthday today!")
 
 if new_day:
     with open("daylogger.txt",'w') as dl:
