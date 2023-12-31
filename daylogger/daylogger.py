@@ -109,7 +109,7 @@ else:
 celebrate = False 
 if new_day:
     for hol in holidays:
-        if hol == "---":
+        if hol[0] == "---":
             continue
         if int(hol[1]) == date.month and int(hol[2]) == date.day:
             celebrate = True
