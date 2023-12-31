@@ -2,12 +2,13 @@
 Script for generating textfile log to track and motivate yourself throughout your day.
 
 ## Setup
-### Linux
-1. Download `daylogger.py` and `daylogger.txt`. Save both these files in the same directory.
+### Ubuntu
+1. Download `daylogger` directory.
 2. From root directory, you may wish to add this alias to your `.bash_aliases` file (optional):
-3. ```
-   echo "alias daylogger='python3 daylogger.py;open daylogger.txt'" >> .bash_aliases
+    ```
+   echo "alias daylogger='python3 ~/path/to/daylogger/daylogger.py;open daylogger.txt'" >> .bash_aliases
    ```
+    where `/path/to/daylogger` is the location where the daylogger directory is saved.
 4. ```
    cd ~/path/to/directory
    ```
@@ -20,3 +21,5 @@ Script for generating textfile log to track and motivate yourself throughout you
       ```
 
 ### Windows
+1. Download `daylogger` directory.
+2. Open Windows cmd prompt.
