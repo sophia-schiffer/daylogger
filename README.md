@@ -13,7 +13,7 @@ Script for generating textfile log to track and motivate yourself throughout you
    1. With alias, run command `daylogger`.
    2. Else:
       ```
-      cd ~/path/to/directory
+      cd ~/path/to/directory/daylogger
       python3 daylogger.py
       open daylogger.txt
       ```
