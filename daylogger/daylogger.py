@@ -79,22 +79,28 @@ if month == "December":
 #TODO: Easter, Thanksgiving
         
 # Countdown
-graduation = [6,9,2024,10,30]
-countdown = graduation
-cd_string = "graduation"
-CT = pytz.timezone('US/Central')
-cd_time = datetime.datetime.now(CT)
-delta = datetime.date(countdown[2],countdown[0],countdown[1])-datetime.date(date.year,date.month,date.day)
-days = delta.days
-hours = countdown[3]-cd_time.hour
-if hours < 0:
-    hours = 24 + hours
-    days -= 1
-minutes = countdown[4]-cd_time.minute-1
-if minutes < 0:
-    minutes = 60 + minutes
-    hours -= 1
-seconds = 60 - cd_time.second
+with open("countdown.txt",'r') as cd:
+    cd_string = cd.readline().strip("\n")
+    CT = pytz.timezone(cd.readline().strip("\n"))
+    cd_time = datetime.datetime.now(CT)
+    cd_date = cd.readline().split(":")
+    for i in range(len(cd_date)):
+        cd_date[i] = int(cd_date[i].strip("\n"))
+    cd_hour = cd.readline().split(":")
+    for i in range(len(cd_hour)):
+        cd_hour[i] = int(cd_hour[i].strip("\n"))
+    
+    delta = datetime.date(cd_date[2],cd_date[0],cd_date[1])-datetime.date(date.year,date.month,date.day)
+    days = delta.days
+    hours = cd_hour[0]-cd_time.hour
+    if hours < 0:
+        hours = 24 + hours
+        days -= 1
+    minutes = cd_hour[1]-cd_time.minute-1
+    if minutes < 0:
+        minutes = 60 + minutes
+        hours -= 1
+    seconds = 60 - cd_time.second
 
 # Daytime
 now = time.localtime()
@@ -105,6 +111,8 @@ elif now.tm_hour < 17:
 else:
     day_str = "evening"
 
+print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
+        " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
 
 celebrate = False 
 if new_day:
