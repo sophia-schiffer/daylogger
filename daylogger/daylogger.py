@@ -111,8 +111,6 @@ elif now.tm_hour < 17:
 else:
     day_str = "evening"
 
-print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
-        " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
 
 celebrate = False 
 if new_day:
