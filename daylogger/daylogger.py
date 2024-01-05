@@ -138,11 +138,13 @@ if new_day:
         dl.write(reason+"\n")
 
         # Goals
-        print("\nWhat are your goals for today?")
+        print("\nWhat are your goals for today?\n")
         goal = "carpe diem"
         count = 1
-        while len(goal) > 0:
+        while True:
             goal = input("Goal "+str(count)+" (or ENTER to cancel): ")
+            if len(goal) == 0:
+                break
             goals[count] = goal
             count += 1
         dl.write("Daily Goals:\n")
