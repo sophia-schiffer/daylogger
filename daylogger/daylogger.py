@@ -5,6 +5,11 @@ import datetime
 import time
 import pytz
 
+def write_goals(goals):
+    with open("goals.txt",'w') as goal:
+        for goal in goals.keys():
+            dl.write(str(goal)+": "+str(goals[goal])+"\n")
+
 # Open all greeting files
 with open("birthdays.txt",'r') as bd:
     birthday_lines = bd.readlines()
@@ -138,7 +143,7 @@ if new_day:
         dl.write(reason+"\n")
 
         # Goals
-        print("\nWhat are your goals for today?\n")
+        print("\nWhat are your goals for today?")
         goal = "carpe diem"
         count = 1
         while True:
@@ -147,14 +152,22 @@ if new_day:
                 break
             goals[count] = goal
             count += 1
-        dl.write("Daily Goals:\n")
+        dl.write("\nDaily Goals:\n")
         for goal in goals.keys():
             dl.write("\t"+str(goal)+": "+str(goals[goal])+"\n")
         dl.write("\n")
 
+    write_goals(goals)
+
+
 else:
     first_entry = False
     # Goals:
+    with open("goals.txt",'r') as goal:
+        goal_lines = goal.readlines()
+        for line in goal_lines:
+            g = line.split(":")
+            goals[int(g[0])] = g[1].strip(" ")
     if len(goals) == 0:
         print("\nGood job! You accomplished all your daily goals!")
     else:
@@ -166,6 +179,7 @@ else:
         for idx in complete_idx:
             idx.strip(" ")
             del goals[int(idx)]
+        write_goals(goals)
     with open("daylogger.txt",'r') as dl:
         lines = dl.readlines()
         num_lines = len(lines)
