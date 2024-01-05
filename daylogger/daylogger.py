@@ -75,8 +75,6 @@ if month == "December":
             num_string = "th"
         holiday = age+num_string+" Birthday"
 
-# Annual holidays
-#TODO: Easter, Thanksgiving
         
 # Countdown
 with open("countdown.txt",'r') as cd:
@@ -112,7 +110,8 @@ else:
     day_str = "evening"
 
 
-celebrate = False 
+celebrate = False
+goals = {}
 if new_day:
     for hol in holidays:
         if hol[0] == "---":
@@ -136,10 +135,35 @@ if new_day:
         string = "Today my reason is: "
         dl.write(string.rstrip("\n"))
         reason = input("\nWhat is your reason today?: ")
-        dl.write(reason+"\n\n")
+        dl.write(reason+"\n")
+
+        # Goals
+        print("\nWhat are your goals for today?")
+        goal = "carpe diem"
+        count = 1
+        while len(goal) > 0:
+            goal = input("Goal "+str(count)+" (or ENTER to cancel): ")
+            goals[count] = goal
+            count += 1
+        dl.write("Daily Goals:\n")
+        for goal in goals.keys():
+            dl.write("\t"+str(goal)+": "+str(goals[goal])+"\n")
+        dl.write("\n")
 
 else:
     first_entry = False
+    # Goals:
+    if len(goals) == 0:
+        print("\nGood job! You accomplished all your daily goals!")
+    else:
+        print("\nRemaining daily goals:")
+        for goal in goals.keys():
+            print("\t"+str(goal)+": "+str(goals[goal]))
+        completed = input("\nDid you complete any of these goals? (ENTER to skip): ")
+        complete_idx = completed.split(",")
+        for idx in complete_idx:
+            idx.strip(" ")
+            del goals[int(idx)]
     with open("daylogger.txt",'r') as dl:
         lines = dl.readlines()
         num_lines = len(lines)
