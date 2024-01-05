@@ -1,3 +1,16 @@
-12-31-2023
+1-5-2024
 
-Today my reason is: 
+Today my reason is: create an example daylogger.txt for my github!
+
+Daily Goals:
+	1: run the daylogger script
+	2: save my changes
+	3: commit
+	4: sync changes
+
+
+09:52:56-
+	I ran the daylogger script.
+	I learned that my example code works.
+	My goal for the next hour is to complete the rest of my example goals.
+

@@ -1,0 +1,6 @@
+2: save my changes
+
+3: commit
+
+4: sync changes
+

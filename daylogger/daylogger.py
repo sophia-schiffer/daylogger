@@ -6,9 +6,9 @@ import time
 import pytz
 
 def write_goals(goals):
-    with open("goals.txt",'w') as goal:
+    with open("goals.txt",'w') as gl:
         for goal in goals.keys():
-            dl.write(str(goal)+": "+str(goals[goal])+"\n")
+            gl.write(str(goal)+": "+str(goals[goal])+"\n")
 
 # Open all greeting files
 with open("birthdays.txt",'r') as bd:
@@ -104,6 +104,9 @@ with open("countdown.txt",'r') as cd:
         minutes = 60 + minutes
         hours -= 1
     seconds = 60 - cd_time.second
+    if cd_time.second == 0:
+        minutes += 1
+        seconds = 0
 
 # Daytime
 now = time.localtime()
