@@ -170,7 +170,9 @@ else:
         goal_lines = goal.readlines()
         for line in goal_lines:
             g = line.split(":")
-            goals[int(g[0])] = g[1].strip(" ")
+            if len(g) < 2:
+                continue
+            goals[int(g[0])] = g[1].strip(" ").strip("\n")
     if len(goals) == 0:
         print("\nGood job! You accomplished all your daily goals!")
     else:
@@ -178,10 +180,11 @@ else:
         for goal in goals.keys():
             print("\t"+str(goal)+": "+str(goals[goal]))
         completed = input("\nDid you complete any of these goals? (ENTER to skip): ")
-        complete_idx = completed.split(",")
-        for idx in complete_idx:
-            idx.strip(" ")
-            del goals[int(idx)]
+        if len(completed) > 0:
+            complete_idx = completed.split(",")
+            for idx in complete_idx:
+                idx.strip(" ")
+                del goals[int(idx)]
         write_goals(goals)
     with open("daylogger.txt",'r') as dl:
         lines = dl.readlines()
