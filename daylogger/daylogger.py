@@ -189,7 +189,7 @@ else:
     with open("daylogger.txt",'r') as dl:
         lines = dl.readlines()
         num_lines = len(lines)
-        if num_lines < 5:
+        if lines[-2][22:33] != "hour is to ":
             first_entry = True
         
         if not first_entry:
