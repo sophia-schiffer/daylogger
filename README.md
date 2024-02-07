@@ -49,7 +49,7 @@ pip install pytz
 ### Holidays
 1. The `holidays.txt` file contains some sample holidays that your daylogger will celebrate with you. You can customize this file to include any holidays you celebrate
 2. The `---` separator is useful for blocking or categorizing your holidays. These lines are skipped in the code.
-3. The default is "Happy _!" If there is a different word used to celebrate the holiday, place it after a colon after the day. (see line 4, "Merry Christmas!")
+3. The default is *"Happy _!"* If there is a different word used to celebrate the holiday, place it after a colon after the day. (see line 4, *"Merry Christmas!"*)
 
 ### Daylogger and Goals files
 1. `daylogger.txt` and `goals.txt` get filled automatically by running the `daylogger.py` script. These do not need to be edited manually.
