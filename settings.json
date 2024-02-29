@@ -1,0 +1,31 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "C_Cpp.default.cppStandard": "c++20",
+    "editor.tokenColorCustomizations": {
+        "comments": "#FF00FF",
+        "keywords": "#0077ff",
+        // "functions": "#d003eb",
+        "functions": "#7344ca",
+        "variables": "#12db98",
+        "numbers": "#d9a2f3",
+        "types": "#82f104",
+        "strings": "#00ffff",
+    },
+    "workbench.colorCustomizations": {
+        "foreground": "#00ffff",
+        "gitDecoration.addedResourceForeground": "#2bff00",
+        "gitDecoration.deletedResourceForeground": "#ff5500",
+        "gitDecoration.modifiedResourceForeground": "#ffea00",
+        "gitDecoration.stageModifiedResourceForeground": "#ffea00",
+        "gitDecoration.stageDeletedResourceForeground": "#ff5500",
+        "gitDecoration.untrackedResourceForeground": "#1e1f20"
+    },
+    "redhat.telemetry.enabled": true,
+    "window.zoomLevel": 1,
+    "git.confirmSync": false,
+    "editor.semanticTokenColorCustomizations": {},
+    "git.enableSmartCommit": true
+}
