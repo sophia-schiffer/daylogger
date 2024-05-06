@@ -80,7 +80,19 @@ if month == "December":
             num_string = "th"
         holiday = age+num_string+" Birthday"
 
-        
+
+# CD functions
+def hour_count(hours, days):
+    if hours < 0:
+        hours = 24 + hours
+        days -= 1
+    return hours, days
+def minute_count(hours, minutes):
+    if minutes < 0:
+        minutes = 60 + minutes
+        hours -= 1
+    return hours, minutes
+
 # Countdown
 with open("countdown.txt",'r') as cd:
     cd_string = cd.readline().strip("\n")
@@ -96,13 +108,12 @@ with open("countdown.txt",'r') as cd:
     delta = datetime.date(cd_date[2],cd_date[0],cd_date[1])-datetime.date(date.year,date.month,date.day)
     days = delta.days
     hours = cd_hour[0]-cd_time.hour
-    if hours < 0:
-        hours = 24 + hours
-        days -= 1
+    hours, days = hour_count(hours, days)
+
     minutes = cd_hour[1]-cd_time.minute-1
-    if minutes < 0:
-        minutes = 60 + minutes
-        hours -= 1
+    hours, minutes = minute_count(hours, minutes)
+    hours, days = hour_count(hours, days)
+    
     seconds = 60 - cd_time.second
     if cd_time.second == 0:
         minutes += 1
@@ -132,8 +143,11 @@ if new_day:
                 print("\nHappy "+hol[0]+"!")
     if not celebrate:
         print("\nGood "+day_str+", "+birthdays[0][0]+"!")
-    print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
-        " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
+    if days < 0:
+        print(cd_string,"has already passed :)")
+    else:
+        print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
+            " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
     for bd in birthdays:
         if int(bd[1]) == date.month and int(bd[2]) == date.day:
             print("\nIt's "+bd[0]+"'s birthday today!")
