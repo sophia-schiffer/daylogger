@@ -65,10 +65,10 @@ else:
 
 # Holidays
 
-if month == "December":
-    if date.day == 2:
+if month == birthdays[0][1]:
+    if date.day == birthdays[0][2]:
         celebrate = True
-        age = str(date.year - 2001)
+        age = str(date.year - birthdays[0][3])
         num_strings = {
             1: "st",
             2: "nd",
