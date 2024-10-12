@@ -16,8 +16,11 @@ def write_tasks(tasks):
         tsk.write("Tasks")
 
 tasks = {}
-with open("holidays.txt",'r') as tsk:
+with open("task.txt",'r') as tsk:
     task_lines = tsk.readlines()
     for task in task_lines:
         new_line = task.split(":")
         new_line[-1] = new_line[-1].strip("\n")
+        tasks[new_line[0]] = new_line[1]
+
+print(tasks)
