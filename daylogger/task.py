@@ -7,9 +7,11 @@
     High: 7
     Medium: 3
     Low: 0
+    *default is 3*
 '''
 
 import sys
+import getopt
 
 def write_tasks(tasks):
     with open("tasks.txt",'w') as tsk:
@@ -43,3 +45,18 @@ for task in task_list:
 
 print("Your top priority is:", max_key)
 print("Your next priority is:", second_key)
+
+new_task = ''
+new_val = ''
+try:
+    opts, args = getopt.getopt(sys.argv[1:],"hi:o:",["task=","priority="])
+except getopt.GetoptError:
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-h':
+        print ('task.py -t <task string> -p <priority (high/medium/low)>')
+        sys.exit()
+    elif opt in ("-t", "--task"):
+        new_task = arg
+    elif opt in ("-p", "--priority"):
+        new_val = arg
