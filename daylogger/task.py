@@ -105,7 +105,6 @@ def input_new():
 input_new()
 
 tasks = read_tasks()
-print("new tasks:", tasks)
 
 task_list = list(tasks.keys())
 assert len(task_list) > 0
