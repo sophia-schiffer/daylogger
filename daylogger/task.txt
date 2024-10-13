@@ -1,2 +1,0 @@
-drink coffee:3
-find love:3

@@ -33,12 +33,9 @@ def remove_top():
     
     # Find the key with the maximum value, converting the values to integers
     max_key = max(tasks, key=lambda k: int(tasks[k]))
-    print("Max_key:", max_key)
 
     # Remove the key and its corresponding value
-    print(tasks)
     del tasks[max_key]
-    print(tasks)
 
     # Clear the file
     with open('task.txt', 'w'):
@@ -52,9 +49,9 @@ def remove_top():
 
 def sort_tasks(task_list):
     max_task = -1
-    max_key = task_list[0]
+    max_key = task_list[-1]
     second_task = -1
-    second_key = task_list[0]
+    second_key = task_list[-1]
     for task in task_list:
         task_val = float(tasks[task])
         if task_val > max_task:
@@ -108,6 +105,7 @@ def input_new():
 input_new()
 
 tasks = read_tasks()
+print("new tasks:", tasks)
 
 task_list = list(tasks.keys())
 assert len(task_list) > 0
