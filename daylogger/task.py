@@ -45,7 +45,13 @@ def remove_top():
     for task, value in tasks.items():
         write_tasks(task, value)
 
+def isNewDay():
+    '''Determines whether task script has been run before
+    '''
 
+def days_elapsed():
+    '''Counts the number of days since numbers were updated
+    '''
 
 def sort_tasks(task_list):
     max_task = -1
