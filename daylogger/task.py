@@ -32,7 +32,7 @@ def remove_top():
     tasks = read_tasks()
     
     # Find the key with the maximum value, converting the values to integers
-    max_key = max(tasks, key=lambda k: int(tasks[k]))
+    max_key = max(tasks, key=lambda k: float(tasks[k]))
 
     # Remove the key and its corresponding value
     del tasks[max_key]
