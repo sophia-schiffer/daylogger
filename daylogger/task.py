@@ -23,7 +23,7 @@ def write_tasks(task, priority):
 
 def read_tasks():
     tasks = {}
-    with open("task.txt",'r') as tsk:
+    with open(TASKFILE,'r') as tsk:
         task_lines = tsk.readlines()
         for task in task_lines[2:]:
             new_line = task.split(":")
@@ -152,9 +152,6 @@ def input_new(today):
 
 if __name__ == '__main__':
     today = datetime.date.today()
-    
-    # Create new task
-    input_new(today)
 
     tasks = read_tasks()
 
@@ -164,6 +161,9 @@ if __name__ == '__main__':
 
     if new_day:
         tasks = increment_values(today, doc_date, increment_factor, tasks)
+
+    # Create new task
+    input_new(today)
 
     task_list = list(tasks.keys())
     assert len(task_list) > 0
