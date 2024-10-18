@@ -1,8 +1,9 @@
 10-17-2024
 
-yay:1.6
-lovely:2.4000000000000004
-whoopee:5.8
-anus:2.8
-clouds:1.8
-Middy:7.8
+yay:10
+lovely:10
+whoopee:10
+anus:10
+clouds:10
+Middy:10
+clownery:10

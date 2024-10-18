@@ -107,7 +107,7 @@ def increment_values(date, prev, factor, tasks):
     elapsed = days_elapsed(date, prev)
 
     for task in tasks.keys():
-        tasks[task] = float(tasks[task]) + factor*elapsed
+        tasks[task] = min(float(tasks[task]) + factor*elapsed, 10)
 
     write_all(tasks)
     return tasks
