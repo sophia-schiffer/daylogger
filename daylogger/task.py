@@ -12,9 +12,12 @@
 
 import sys
 import getopt
+import datetime
+
+TASKFILE = "task.txt"
 
 def write_tasks(task, priority):
-    with open("task.txt",'a') as tsk:
+    with open(TASKFILE,'a') as tsk:
         task_string = task + ":" + str(priority) + "\n"
         tsk.write(task_string)
 
@@ -22,13 +25,13 @@ def read_tasks():
     tasks = {}
     with open("task.txt",'r') as tsk:
         task_lines = tsk.readlines()
-        for task in task_lines:
+        for task in task_lines[2:]:
             new_line = task.split(":")
             new_line[-1] = new_line[-1].strip("\n")
             tasks[new_line[0]] = new_line[1]
     return tasks
 
-def remove_top():
+def remove_top(today):
     tasks = read_tasks()
     
     # Find the key with the maximum value, converting the values to integers
@@ -38,20 +41,37 @@ def remove_top():
     del tasks[max_key]
 
     # Clear the file
-    with open('task.txt', 'w'):
-        pass  # This clears the file
+    with open('task.txt', 'w') as tsk:
+        tsk.write(str(today.month)+"-"+str(today.day)+"-"+str(today.year)+"\n\n")
 
     # Write the remaining tasks back to the file
     for task, value in tasks.items():
         write_tasks(task, value)
 
-def isNewDay():
+def new_date(today):
     '''Determines whether task script has been run before
     '''
+    with open(TASKFILE,'r') as tsk:
+        first_line = tsk.readline()
 
-def days_elapsed():
+    doc_date = first_line.split("-")
+    doc_date[2] = doc_date[2][:4]
+
+    if days_elapsed(today, doc_date) == 0:
+        new = False
+    else:
+        new = True
+
+    return new, doc_date
+
+def days_elapsed(today, doc_date):
     '''Counts the number of days since numbers were updated
     '''
+    
+    prev = datetime.date(int(doc_date[2]),int(doc_date[0]),int(doc_date[1]))
+
+    elapsed = today - prev
+    return elapsed
 
 def sort_tasks(task_list):
     max_task = -1
@@ -70,6 +90,11 @@ def sort_tasks(task_list):
             second_key = task
     
     return max_key, second_key
+
+def increment_values(day, factor):
+    '''Increments all task values by specified factor
+    '''
+    print("hello <3")
 
 def input_new():
     new_task = ''
@@ -108,13 +133,24 @@ def input_new():
 
     write_tasks(new_task, val)
 
-input_new()
+if __name__ == '__main__':
+    today = datetime.date.today()
+    
+    # Create new task
+    input_new()
 
-tasks = read_tasks()
+    # Increment tasks
+    new_day, doc_date = new_date(today)
+    increment_factor = 0.8
 
-task_list = list(tasks.keys())
-assert len(task_list) > 0
+    if new_day:
+        increment_values(days_elapsed(today,doc_date), increment_factor)
 
-max_key, second_key = sort_tasks(task_list)
-print("Your top priority is:", max_key)
-print("Your next priority is:", second_key)
+    tasks = read_tasks()
+
+    task_list = list(tasks.keys())
+    assert len(task_list) > 0
+
+    max_key, second_key = sort_tasks(task_list)
+    print("Your top priority is:", max_key)
+    print("Your next priority is:", second_key)
