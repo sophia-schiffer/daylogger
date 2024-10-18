@@ -29,7 +29,18 @@ def read_tasks():
             new_line = task.split(":")
             new_line[-1] = new_line[-1].strip("\n")
             tasks[new_line[0]] = new_line[1]
+
     return tasks
+
+def reset_file(today):
+    '''Clears text file'''
+    with open(TASKFILE, 'w') as tsk:
+        tsk.write(str(today.month)+"-"+str(today.day)+"-"+str(today.year)+"\n\n")
+
+def write_all(tasks):
+    '''Writes all tasks in task dictionary'''
+    for task, value in tasks.items():
+        write_tasks(task, value)
 
 def remove_top(today):
     tasks = read_tasks()
@@ -41,12 +52,10 @@ def remove_top(today):
     del tasks[max_key]
 
     # Clear the file
-    with open('task.txt', 'w') as tsk:
-        tsk.write(str(today.month)+"-"+str(today.day)+"-"+str(today.year)+"\n\n")
+    reset_file(today)
 
     # Write the remaining tasks back to the file
-    for task, value in tasks.items():
-        write_tasks(task, value)
+    write_all(tasks)
 
 def new_date(today):
     '''Determines whether task script has been run before
@@ -71,7 +80,7 @@ def days_elapsed(today, doc_date):
     prev = datetime.date(int(doc_date[2]),int(doc_date[0]),int(doc_date[1]))
 
     elapsed = today - prev
-    return elapsed
+    return elapsed.days
 
 def sort_tasks(task_list):
     max_task = -1
@@ -91,10 +100,18 @@ def sort_tasks(task_list):
     
     return max_key, second_key
 
-def increment_values(day, factor):
+def increment_values(date, prev, factor, tasks):
     '''Increments all task values by specified factor
     '''
-    print("hello <3")
+    reset_file(date)
+    elapsed = days_elapsed(date, prev)
+
+    for task in tasks.keys():
+        tasks[task] = float(tasks[task]) + factor*elapsed
+
+    write_all(tasks)
+    return tasks
+
 
 def input_new():
     new_task = ''
@@ -139,14 +156,14 @@ if __name__ == '__main__':
     # Create new task
     input_new()
 
+    tasks = read_tasks()
+
     # Increment tasks
     new_day, doc_date = new_date(today)
     increment_factor = 0.8
 
     if new_day:
-        increment_values(days_elapsed(today,doc_date), increment_factor)
-
-    tasks = read_tasks()
+        tasks = increment_values(today, doc_date, increment_factor, tasks)
 
     task_list = list(tasks.keys())
     assert len(task_list) > 0
