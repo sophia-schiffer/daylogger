@@ -113,7 +113,7 @@ def increment_values(date, prev, factor, tasks):
     return tasks
 
 
-def input_new():
+def input_new(today):
     new_task = ''
     priority = ''
     try:
@@ -132,7 +132,7 @@ def input_new():
             priority = arg
         elif opt in ("-r", "--remove"):
             if arg == 'true':
-                remove_top()
+                remove_top(today)
     
     if new_task == '':
         return
@@ -154,7 +154,7 @@ if __name__ == '__main__':
     today = datetime.date.today()
     
     # Create new task
-    input_new()
+    input_new(today)
 
     tasks = read_tasks()
 
