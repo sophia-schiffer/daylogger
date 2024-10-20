@@ -164,9 +164,12 @@ if __name__ == '__main__':
 
     # Create new task
     input_new(today)
+    tasks = read_tasks()
 
     task_list = list(tasks.keys())
-    assert len(task_list) > 0
+    if len(task_list) == 0:
+        print("No tasks to complete!")
+        sys.exit()
 
     max_key, second_key = sort_tasks(task_list)
     print("Your top priority is:", max_key)
