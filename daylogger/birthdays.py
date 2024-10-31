@@ -34,11 +34,16 @@ def read_birthdays():
             new_line = line.split(':')
             new_line[-1] = new_line[-1].strip("\n")
             birthdays.append(new_line)
+
     return birthdays
 
 def sort_birthdays(birthdays):
-    sorted_birthdays = sorted(birthdays, key=lambda x: x[2])
+    sorted_birthdays = sorted(birthdays, key=lambda x: x[1])
     return sorted_birthdays
+
+def print_birthdays(month, birthdays):
+    for bday in birthdays:
+        print(str(bday[0])+": "+str(month)+"/"+str(bday[1]))
 
 if __name__ == '__main__':
     today = datetime.date.today()
@@ -55,5 +60,4 @@ if __name__ == '__main__':
             relevant_birthdays[bday[0]] = int(bday[1])
             #TODO add recursion for month then day sort
 
-    
-
+    print_birthdays(today.month,sort_birthdays(relevant_birthdays.items()))
