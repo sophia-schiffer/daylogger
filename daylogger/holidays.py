@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-'''Script that informs user of birthdays coming up
-    Uses terminal command to output sorted birthdays
+'''Script that informs user of holidays coming up
+    Uses terminal command to output sorted holidays
     
     -s month, year
     -n name
@@ -21,11 +21,11 @@ def get_args():
         opts, args = getopt.getopt(sys.argv[1:],"hs:n:m:d:",["sort="])
     except getopt.GetoptError:
         print("Error: Invalid arguments")
-        print('Usage: birthdays.py -s <timeline string> -n <name> -m <month> -d <day>')
+        print('Usage: holidays.py -s <timeline string> -n <name> -m <month> -d <day>')
         return
     for opt, arg in opts:
         if opt == '-h':
-            print('Usage: birthdays.py -s <timeline string>')
+            print('Usage: holidays.py -s <timeline string>')
             sys.exit(2)
         elif opt in ("-s", "--sort"):
             entry = arg
@@ -38,23 +38,23 @@ def get_args():
     
     return entry, new_name, new_month, new_day
 
-def read_birthdays():
-    with open("birthdays.txt",'r') as bd:
+def read_holidays():
+    with open("holidays.txt",'r') as bd:
         birthday_lines = bd.readlines()
-        birthdays = []
+        holidays = []
         for line in birthday_lines:
             new_line = line.split(':')
             new_line[-1] = new_line[-1].strip("\n")
-            birthdays.append(new_line)
+            holidays.append(new_line)
 
-    return birthdays
+    return holidays
 
-def sort_birthdays(birthdays):
-    sorted_birthdays = sorted(birthdays, key=lambda x: x[1])
-    return sorted_birthdays
+def sort_holidays(holidays):
+    sorted_holidays = sorted(holidays, key=lambda x: x[1])
+    return sorted_holidays
 
-def print_birthdays(month, birthdays):
-    for bday in birthdays:
+def print_holidays(month, holidays):
+    for bday in holidays:
         print(str(bday[0])+": "+str(month)+"/"+str(bday[1]))
 
 def input_new(name, month, day):
@@ -65,7 +65,7 @@ def input_new(name, month, day):
         print("Error: No day entered")
         return
 
-    with open("birthdays.txt",'a') as bd:
+    with open("holidays.txt",'a') as bd:
         bd.write(name+":"+month+":"+day+"\n")
 
     print("Birthday added")
@@ -73,19 +73,19 @@ def input_new(name, month, day):
 if __name__ == '__main__':
     today = datetime.date.today()
     timeline, name, month, day = get_args()
-    birthdays = read_birthdays()
-    relevant_birthdays = {}
+    holidays = read_holidays()
+    relevant_holidays = {}
     
     if name != '':
         input_new(name, month, day)
 
     if timeline == 'month':
-        for bday in birthdays:
+        for bday in holidays:
             if int(bday[1]) == today.month:
-                relevant_birthdays[bday[0]] = int(bday[2])
+                relevant_holidays[bday[0]] = int(bday[2])
     elif timeline == 'year':
-        for bday in birthdays:
-            relevant_birthdays[bday[0]] = int(bday[1])
+        for bday in holidays:
+            relevant_holidays[bday[0]] = int(bday[1])
             #TODO add recursion for month then day sort
 
-    print_birthdays(today.month,sort_birthdays(relevant_birthdays.items()))
+    print_holidays(today.month,sort_holidays(relevant_holidays.items()))
