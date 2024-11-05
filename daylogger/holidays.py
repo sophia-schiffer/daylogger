@@ -54,8 +54,10 @@ def sort_holidays(holidays):
     return sorted_holidays
 
 def print_holidays(month, holidays):
-    for bday in holidays:
-        print(str(bday[0])+": "+str(month)+"/"+str(bday[1]))
+    for hol in holidays:
+        if hol[0] == "---":
+            continue
+        print(str(hol[0])+": "+str(month)+"/"+str(hol[1]))
 
 def input_new(name, month, day):
     if month == '':
@@ -68,7 +70,7 @@ def input_new(name, month, day):
     with open("holidays.txt",'a') as bd:
         bd.write(name+":"+month+":"+day+"\n")
 
-    print("Birthday added")
+    print("Holiday added")
 
 if __name__ == '__main__':
     today = datetime.date.today()
@@ -80,12 +82,14 @@ if __name__ == '__main__':
         input_new(name, month, day)
 
     if timeline == 'month':
-        for bday in holidays:
-            if int(bday[1]) == today.month:
-                relevant_holidays[bday[0]] = int(bday[2])
+        for hol in holidays:
+            if hol[0] == "---":
+                continue
+            elif int(hol[1]) == today.month:
+                relevant_holidays[hol[0]] = int(hol[2])
     elif timeline == 'year':
-        for bday in holidays:
-            relevant_holidays[bday[0]] = int(bday[1])
+        for hol in holidays:
+            relevant_holidays[hol[0]] = int(hol[1])
             #TODO add recursion for month then day sort
 
     print_holidays(today.month,sort_holidays(relevant_holidays.items()))
