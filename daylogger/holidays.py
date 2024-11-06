@@ -22,11 +22,11 @@ def get_args():
         opts, args = getopt.getopt(sys.argv[1:],"hs:n:m:d:p:",["sort="])
     except getopt.GetoptError:
         print("Error: Invalid arguments")
-        print('Usage: holidays.py -s <timeline string> -n <name> -m <month> -d <day>')
+        print('Usage: holidays.py -s <timeline string> -n <name> -m <month> -d <day> -p <prefix>')
         return
     for opt, arg in opts:
         if opt == '-h':
-            print('Usage: holidays.py -s <timeline string>')
+            print('Usage: holidays.py -s <timeline string> -n <name> -m <month> -d <day> -p <prefix>')
             sys.exit(2)
         elif opt in ("-s", "--sort"):
             entry = arg
