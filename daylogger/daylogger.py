@@ -133,7 +133,7 @@ celebrate = False
 goals = {}
 if new_day:
     for hol in holidays:
-        if hol[0] == "---":
+        if hol[0] == "---" or hol[0] == "":
             continue
         if int(hol[1]) == date.month and int(hol[2]) == date.day:
             celebrate = True
