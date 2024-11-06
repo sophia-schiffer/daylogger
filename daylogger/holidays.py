@@ -17,8 +17,9 @@ def get_args():
     new_name = ''
     new_month = ''
     new_day = ''
+    prefix = ''
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"hs:n:m:d:",["sort="])
+        opts, args = getopt.getopt(sys.argv[1:],"hs:n:m:d:p:",["sort="])
     except getopt.GetoptError:
         print("Error: Invalid arguments")
         print('Usage: holidays.py -s <timeline string> -n <name> -m <month> -d <day>')
@@ -35,12 +36,14 @@ def get_args():
             new_month = arg
         elif opt in ("-d", "--day"):
             new_day = arg
+        elif opt in ("-p", "--prefix"):
+            prefix = arg
     
-    return entry, new_name, new_month, new_day
+    return entry, new_name, new_month, new_day, prefix
 
 def read_holidays():
-    with open("holidays.txt",'r') as bd:
-        birthday_lines = bd.readlines()
+    with open("holidays.txt",'r') as hol:
+        birthday_lines = hol.readlines()
         holidays = []
         for line in birthday_lines:
             new_line = line.split(':')
@@ -59,7 +62,7 @@ def print_holidays(month, holidays):
             continue
         print(str(hol[0])+": "+str(month)+"/"+str(hol[1]))
 
-def input_new(name, month, day):
+def input_new(name, month, day, prefix):
     if month == '':
         print("Error: No month entered")
         return
@@ -67,19 +70,23 @@ def input_new(name, month, day):
         print("Error: No day entered")
         return
 
-    with open("holidays.txt",'a') as bd:
-        bd.write(name+":"+month+":"+day+"\n")
+    if prefix == '':
+        with open("holidays.txt",'a') as hol:
+            hol.write(name+":"+month+":"+day+"\n")
+    else:
+        with open("holidays.txt",'a') as hol:
+            hol.write(name+":"+month+":"+day+":"+prefix+"\n")
 
     print("Holiday added")
 
 if __name__ == '__main__':
     today = datetime.date.today()
-    timeline, name, month, day = get_args()
+    timeline, name, month, day, prefix = get_args()
     holidays = read_holidays()
     relevant_holidays = {}
     
     if name != '':
-        input_new(name, month, day)
+        input_new(name, month, day, prefix)
 
     if timeline == 'month':
         for hol in holidays:
