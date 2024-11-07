@@ -146,8 +146,23 @@ if new_day:
     if days < 0:
         print(cd_string,"has already passed :)")
     else:
-        print("There are "+str(days)+" days, "+str(hours)+" hours, "+str(minutes)+ \
-            " minutes, and "+str(seconds)+" seconds until "+cd_string+".")
+        conjunction = "are "
+        day_string = "days"
+        hour_string = "hours"
+        minute_string = "minutes"
+        second_string = "seconds"
+        if days == 1:
+            day_string = "day"
+            conjunction = "is "
+        if hours == 1:
+            hour_string = "hour"
+        if minutes == 1:
+            minute_string = "minute"
+        if seconds == 1:
+            second_string = "second"
+
+        print("There "+conjunction+str(days)+" "+day_string+", "+str(hours)+" "+hour_string+", "+str(minutes)+ \
+            " "+minute_string+", and "+str(seconds)+" "+second_string+" until "+cd_string+".")
     for bd in birthdays:
         if int(bd[1]) == date.month and int(bd[2]) == date.day:
             print("\nIt's "+bd[0]+"'s birthday today!")
