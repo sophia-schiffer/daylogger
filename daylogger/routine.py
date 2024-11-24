@@ -24,6 +24,12 @@ def get_time():
 
     return hour, minute
 
+def get_day():
+    time = datetime.datetime.now()
+    day = time.weekday()
+
+    return day
+
 def split_routine(routine):
     am = []
     pm = []
@@ -45,11 +51,12 @@ def split_routine(routine):
 if __name__ == "__main__":
     routine = read_routine()
     hour, minute = get_time()
+    day = get_day()
     am, pm, midday = split_routine(routine)
 
     routine_list = []
     if hour < 12:
-        if hour < int(am[-1][0]) and minute < int(am[-1][1]):
+        if (hour < int(am[-1][0]) and minute < int(am[-1][1])) or day == 6 or day == 7:
             routine_list = am.copy()
         else:
             routine_list = midday.copy()
