@@ -49,13 +49,34 @@ if __name__ == "__main__":
 
     routine_list = []
     if hour < 12:
-        if hour < am[-1][0] and minute < am[-1][1]:
+        if hour < int(am[-1][0]) and minute < int(am[-1][1]):
             routine_list = am.copy()
         else:
             routine_list = midday.copy()
 
     else:
-        if hour >= pm[-1][0] and minute >= pm[-1][1]:
+        if hour > int(pm[0][0]) and minute >= int(pm[0][1]):
             routine_list = pm.copy()
+            for item in routine_list:
+                item[0] = str(int(item[0])+12)
         else:
-            routine_list = am.copy()
+            routine_list = midday.copy()
+    
+    print("Your routine (press enter to advance):")
+
+    if routine_list == am or routine_list == pm:
+        for step in routine_list:
+            tried = False
+            while not tried:
+                if hour > int(step[0]) or (hour == int(step[0]) and minute >= int(step[1])):
+                    input(step[2])
+                    tried = True
+                else:
+                    print("Next task at "+step[0]+":"+step[1]+".")
+                    input("Press enter when time is reached.")
+                    hour, minute = get_time()
+    else:
+        for step in routine_list:
+            input(step[0])
+
+    print("Routine complete!")
