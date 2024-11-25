@@ -81,7 +81,7 @@ if __name__ == "__main__":
                 else:
                     print("Next task at "+step[0]+":"+step[1]+".")
                     input("Press enter when time is reached.")
-                    hour, minute = get_time()
+                hour, minute = get_time()
     else:
         for step in routine_list:
             input(step[0])
