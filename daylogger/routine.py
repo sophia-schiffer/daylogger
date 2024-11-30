@@ -52,11 +52,12 @@ if __name__ == "__main__":
     routine = read_routine()
     hour, minute = get_time()
     day = get_day()
+    print("Day: ", day)
     am, pm, midday = split_routine(routine)
 
     routine_list = []
     if hour < 12:
-        if (hour < int(am[-1][0]) or (hour == int(am[-1][0]) and minute <= int(am[-1][0]))) or day == 1 or day == 7:
+        if (hour < int(am[-1][0]) or (hour == int(am[-1][0]) and minute <= int(am[-1][0]))) or day == 5 or day == 6:
             routine_list = am.copy()
         else:
             routine_list = midday.copy()
