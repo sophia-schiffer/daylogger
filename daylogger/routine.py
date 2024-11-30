@@ -52,7 +52,6 @@ if __name__ == "__main__":
     routine = read_routine()
     hour, minute = get_time()
     day = get_day()
-    print("Day: ", day)
     am, pm, midday = split_routine(routine)
 
     routine_list = []
