@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     routine_list = []
     if hour < 12:
-        if (hour < int(am[-1][0]) or (hour == int(am[-1][0]) and minute <= int(am[-1][0]))) or day == 6 or day == 7:
+        if (hour < int(am[-1][0]) or (hour == int(am[-1][0]) and minute <= int(am[-1][0]))) or day == 1 or day == 7:
             routine_list = am.copy()
         else:
             routine_list = midday.copy()
