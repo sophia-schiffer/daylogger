@@ -83,9 +83,17 @@ if __name__ == '__main__':
         for bday in birthdays:
             if int(bday[1]) == today.month:
                 relevant_birthdays[bday[0]] = int(bday[2])
-    elif timeline == 'year':
-        for bday in birthdays:
-            relevant_birthdays[bday[0]] = int(bday[1])
-            #TODO add recursion for month then day sort
+        print_birthdays(today.month,sort_birthdays(relevant_birthdays.items()))
 
-    print_birthdays(today.month,sort_birthdays(relevant_birthdays.items()))
+    elif timeline == 'year':
+        month = 1
+        while month <= 12:
+            for hol in birthdays:
+                if hol[0] == "---" or hol[0] == "":
+                    continue
+                elif int(hol[1]) == month:
+                    relevant_birthdays[hol[0]] = int(hol[2])
+            new_birthdays = sort_birthdays(relevant_birthdays.items())
+            print_birthdays(month,new_birthdays)
+            month += 1
+            relevant_birthdays = {}
