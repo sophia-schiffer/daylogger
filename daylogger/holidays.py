@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
     if timeline == 'month':
         for hol in holidays:
-            if hol[0] == "---":
+            if hol[0] == "---" or hol[0] == "":
                 continue
             elif int(hol[1]) == today.month:
                 relevant_holidays[hol[0]] = int(hol[2])
