@@ -84,6 +84,7 @@ if __name__ == '__main__':
     timeline, name, month, day, prefix = get_args()
     holidays = read_holidays()
     relevant_holidays = {}
+    new_holidays = []
     
     if name != '':
         input_new(name, month, day, prefix)
@@ -94,9 +95,19 @@ if __name__ == '__main__':
                 continue
             elif int(hol[1]) == today.month:
                 relevant_holidays[hol[0]] = int(hol[2])
-    elif timeline == 'year':
-        for hol in holidays:
-            relevant_holidays[hol[0]] = int(hol[1])
-            #TODO add recursion for month then day sort
+        new_holidays = sort_holidays(relevant_holidays.items())
+        print_holidays(today.month,new_holidays)
 
-    print_holidays(today.month,sort_holidays(relevant_holidays.items()))
+    elif timeline == 'year':
+        month = 1
+        while month <= 12:
+            for hol in holidays:
+                if hol[0] == "---" or hol[0] == "":
+                    continue
+                elif int(hol[1]) == month:
+                    relevant_holidays[hol[0]] = int(hol[2])
+            new_holidays = sort_holidays(relevant_holidays.items())
+            print_holidays(month,new_holidays)
+            month += 1
+            relevant_holidays = {}
+    
