@@ -125,7 +125,7 @@ def input_new(today):
     for opt, arg in opts:
         if opt == '-h':
             print('Usage: task.py -t <task string> -p <priority (high/medium/low)> -r <true/false>')
-            return
+            exit(2)
         elif opt in ("-t", "--task"):
             new_task = arg
         elif opt in ("-p", "--priority"):
